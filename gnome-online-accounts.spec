@@ -2,12 +2,12 @@
 %define		skip_post_check_so	libgoa-backend-1.0.so.0.0.0
 Summary:	Provide online accounts information
 Name:		gnome-online-accounts
-Version:	3.1.1
+Version:	3.1.90
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	1149d66985b513dd34c32abf9b237b4f
+# Source0-md5:	6017073df37a81c8a5285bace4aa13ef
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.10
@@ -106,3 +106,6 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/goa
+
+%clean
+rm -rf $RPM_BUILD_ROOT
