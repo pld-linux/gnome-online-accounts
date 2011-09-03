@@ -11,18 +11,18 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.1/%{name
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.10
-BuildRequires:	glib2-devel
-BuildRequires:	gobject-introspection-devel
-BuildRequires:	gtk-doc
-BuildRequires:	gtk+3-devel
-BuildRequires:	intltool >= 0.40.1
-BuildRequires:	json-glib-devel
 BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	glib2-devel
 BuildRequires:	gnome-doc-utils >= 0.12.1
 BuildRequires:	gnome-keyring-devel
+BuildRequires:	gobject-introspection-devel
+BuildRequires:	gtk+3-devel
+BuildRequires:	gtk-doc
+BuildRequires:	gtk-webkit3-devel
+BuildRequires:	intltool >= 0.40.1
+BuildRequires:	json-glib-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	rest-devel
-BuildRequires:	gtk-webkit3-devel
 Requires(post,postun):	gtk-update-icon-cache
 
 %description
