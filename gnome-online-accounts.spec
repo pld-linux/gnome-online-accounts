@@ -6,8 +6,8 @@ Version:	3.1.90
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	6017073df37a81c8a5285bace4aa13ef
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.1/%{name}-%{version}.tar.xz
+# Source0-md5:	7786a591543770686ceb949f1e8ba227
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.10
@@ -23,6 +23,8 @@ BuildRequires:	intltool >= 0.40.1
 BuildRequires:	json-glib-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	rest-devel
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires(post,postun):	gtk-update-icon-cache
 
 %description
@@ -63,8 +65,13 @@ GOA API documentation.
 %{__automake}
 %configure \
 	--disable-static \
+	--disable-silent-rules \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	--enable-google \
+	--enable-twitter \
+	--enable-yahoo \
+	--enable-facebook
 %{__make}
 
 %install
