@@ -2,27 +2,28 @@
 %define		skip_post_check_so	libgoa-backend-1.0.so.0.0.0
 Summary:	Provide online accounts information
 Name:		gnome-online-accounts
-Version:	3.1.91
+Version:	3.2.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.1/%{name}-%{version}.tar.xz
-# Source0-md5:	c4ff0732db7a37763b475f72cb5a9a79
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.2/%{name}-%{version}.tar.xz
+# Source0-md5:	be0aef685b335e0a66c37f0fd340a3a2
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
-BuildRequires:	automake >= 1:1.10
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.29.5
 BuildRequires:	gnome-doc-utils >= 0.12.1
-BuildRequires:	gobject-introspection-devel
-BuildRequires:	gtk+3-devel
+BuildRequires:	gobject-introspection-devel >= 0.6.2
+BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc
 BuildRequires:	gtk-webkit3-devel
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	json-glib-devel
 BuildRequires:	libgnome-keyring-devel
 BuildRequires:	libnotify-devel >= 0.7
-BuildRequires:	rest-devel
+BuildRequires:	libsoup-gnome-devel >= 2.26
+BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
