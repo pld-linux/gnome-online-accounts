@@ -2,17 +2,18 @@
 %define		skip_post_check_so	libgoa-backend-1.0.so.0.0.0
 Summary:	Provide online accounts information
 Name:		gnome-online-accounts
-Version:	3.2.1
+Version:	3.4.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.2/%{name}-%{version}.tar.xz
-# Source0-md5:	54ca322afd4c899238460baba4fad7db
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.4/%{name}-%{version}.tar.xz
+# Source0-md5:	dd1632ab23dc1af5ece70444d486ba84
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	glib2-devel >= 1:2.29.5
+BuildRequires:	glib2-devel >= 1:2.30.0
+BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils >= 0.12.1
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.0.0
@@ -39,7 +40,7 @@ libraries in GNOME can access the user's online accounts.
 Summary:	Development files for %{name}
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.29.5
+Requires:	glib2-devel >= 1:2.30.0
 Requires:	gtk+3-devel
 
 %description devel
