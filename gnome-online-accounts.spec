@@ -2,28 +2,31 @@
 %define		skip_post_check_so	libgoa-backend-1.0.so.0.0.0
 Summary:	Provide online accounts information
 Name:		gnome-online-accounts
-Version:	3.4.2
+Version:	3.6.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.4/%{name}-%{version}.tar.xz
-# Source0-md5:	adb39a6ba7661fff915297ebb800ec09
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.6/%{name}-%{version}.tar.xz
+# Source0-md5:	8d4b9957a722e1d1bffa67e2f61c9909
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
+BuildRequires:	gcr-devel
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	glib2-devel >= 1:2.30.0
+BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils >= 0.12.1
 BuildRequires:	gobject-introspection-devel >= 0.6.2
-BuildRequires:	gtk+3-devel >= 3.0.0
+BuildRequires:	gtk+3-devel >= 3.5.1
 BuildRequires:	gtk-doc
 BuildRequires:	gtk-webkit3-devel
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	json-glib-devel
 BuildRequires:	libgnome-keyring-devel
 BuildRequires:	libnotify-devel >= 0.7
-BuildRequires:	libsoup-gnome-devel >= 2.26
+BuildRequires:	libsecret-devel
+BuildRequires:	libsoup-gnome-devel >= 2.38
+BuildRequires:	libxml2-devel
 BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
@@ -40,8 +43,8 @@ libraries in GNOME can access the user's online accounts.
 Summary:	Development files for %{name}
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.30.0
-Requires:	gtk+3-devel
+Requires:	glib2-devel >= 1:2.32.0
+Requires:	gtk+3-devel >= 3.5.1
 
 %description devel
 The gnome-online-accounts-devel package contains libraries and header
@@ -72,11 +75,7 @@ GOA API documentation.
 	--disable-static \
 	--disable-silent-rules \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	--enable-google \
-	--enable-twitter \
-	--enable-yahoo \
-	--enable-facebook
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
