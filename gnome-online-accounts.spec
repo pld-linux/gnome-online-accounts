@@ -5,12 +5,13 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.6.2
+Version:	3.6.3
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	178faf9ed1a57c306612d61423b9874e
+# Source0-md5:	7ab4e7b22a629a32bf794f9c2e52e66d
+Patch0:		format-security.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
@@ -87,6 +88,7 @@ Dokumentacja API GOA.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__gnome_doc_prepare}
