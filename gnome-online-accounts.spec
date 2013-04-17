@@ -1,16 +1,16 @@
 #
 # Conditional build:
 %bcond_with	kerberos5	# Kerberos 5 support [TODO: heimdal vs MIT]
-#
+
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.8.0
+Version:	3.8.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	c64def67a57ea436b9c3a3097615f5ad
+# Source0-md5:	efe11be361cbf19040e16e2090886c43
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
