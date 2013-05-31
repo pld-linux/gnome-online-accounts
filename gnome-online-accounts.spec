@@ -6,7 +6,7 @@ Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
 Version:	3.8.2
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.8/%{name}-%{version}.tar.xz
@@ -36,6 +36,7 @@ BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+Requires:	%{name}-libs = %{version}-%{release}
 %if %{with kerberos5}
 BuildRequires:	/usr/bin/krb5-config
 BuildRequires:	gcr-devel >= 3
@@ -57,11 +58,19 @@ gnome-online-accounts udostępnia interfejsy pozwalające aplikacjom i
 bibliotekom GNOME na dostęp do kont użytkownika w serwisach
 sieciowych.
 
+%package libs
+Summary:	gnome-online-accounts libraries
+Group:		Libraries
+Conflicts:	gnome-online-accounts < 3.8.2-1.1
+
+%description libs
+gnome-online-accounts libraries.
+
 %package devel
 Summary:	Development files for gnome-online-accounts libraries
 Summary(pl.UTF-8):	Pliki programistyczne bibliotek gnome-online-accounts
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
 Requires:	gtk+3-devel >= 3.6.0
 
@@ -131,15 +140,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc NEWS
 %attr(755,root,root) %{_libexecdir}/goa-daemon
-%attr(755,root,root) %{_libdir}/libgoa-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgoa-1.0.so.0
-%attr(755,root,root) %{_libdir}/libgoa-backend-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgoa-backend-1.0.so.0
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_iconsdir}/hicolor/*/apps/goa-*.png
 %{_mandir}/man8/goa-daemon.8*
 %{_libdir}/girepository-1.0/Goa-1.0.typelib
 %{_datadir}/gnome-online-accounts
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgoa-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgoa-1.0.so.0
+%attr(755,root,root) %{_libdir}/libgoa-backend-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgoa-backend-1.0.so.0
 
 %files devel
 %defattr(644,root,root,755)
