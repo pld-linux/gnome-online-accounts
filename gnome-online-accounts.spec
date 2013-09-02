@@ -5,12 +5,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.8.2
-Release:	2
+Version:	3.8.3
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	d842ea6a4945df817756d81d6f6dec0f
+# Source0-md5:	b22cac719544e9dabb1adcb288439fbb
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
@@ -27,7 +27,7 @@ BuildRequires:	json-glib-devel
 BuildRequires:	libgnome-keyring-devel
 BuildRequires:	libnotify-devel >= 0.7
 BuildRequires:	libsecret-devel
-BuildRequires:	libsoup-gnome-devel >= 2.42.0
+BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2
 BuildRequires:	libxslt-progs
@@ -46,7 +46,7 @@ Requires:	glib2 >= 1:2.36.0
 Requires:	gtk+3 >= 3.6.0
 Requires:	hicolor-icon-theme
 Requires:	libnotify >= 0.7
-Requires:	libsoup-gnome >= 2.42.0
+Requires:	libsoup >= 2.42.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -60,11 +60,15 @@ sieciowych.
 
 %package libs
 Summary:	gnome-online-accounts libraries
+Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
 
 %description libs
 gnome-online-accounts libraries.
+
+%description libs -l pl.UTF-8
+Biblioteki gnome-online-accounts.
 
 %package devel
 Summary:	Development files for gnome-online-accounts libraries
@@ -108,8 +112,8 @@ Dokumentacja API GOA.
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-static \
 	--disable-silent-rules \
+	--disable-static \
 	--enable-gtk-doc \
 	%{?with_kerberos5:--enable-kerberos} \
 	--with-html-dir=%{_gtkdocdir}
