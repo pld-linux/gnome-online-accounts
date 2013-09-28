@@ -5,12 +5,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.8.3
+Version:	3.10.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	b22cac719544e9dabb1adcb288439fbb
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	5e905925b5658b29a6aac2b8c24b4f2e
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
@@ -21,11 +21,9 @@ BuildRequires:	gnome-doc-utils >= 0.12.1
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.6.0
 BuildRequires:	gtk-doc >= 1.3
-BuildRequires:	gtk-webkit3-devel
+BuildRequires:	gtk-webkit3-devel >= 2.2.0
 BuildRequires:	intltool >= 0.40.1
 BuildRequires:	json-glib-devel
-BuildRequires:	libgnome-keyring-devel
-BuildRequires:	libnotify-devel >= 0.7
 BuildRequires:	libsecret-devel
 BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libtool
@@ -35,6 +33,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	telepathy-glib-devel
 BuildRequires:	xz
 Requires:	%{name}-libs = %{version}-%{release}
 %if %{with kerberos5}
@@ -42,11 +41,7 @@ BuildRequires:	/usr/bin/krb5-config
 BuildRequires:	gcr-devel >= 3
 %endif
 Requires(post,postun):	gtk-update-icon-cache
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.6.0
 Requires:	hicolor-icon-theme
-Requires:	libnotify >= 0.7
-Requires:	libsoup >= 2.42.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -62,6 +57,10 @@ sieciowych.
 Summary:	gnome-online-accounts libraries
 Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
+Requires:	glib2 >= 1:2.36.0
+Requires:	gtk+3 >= 3.6.0
+Requires:	gtk-webkit3 >= 2.2.0
+Requires:	libsoup >= 2.42.0
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
 
 %description libs
@@ -127,7 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
-%find_lang gnome-online-accounts
+%find_lang gnome-online-accounts --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -145,7 +144,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc NEWS
 %attr(755,root,root) %{_libexecdir}/goa-daemon
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
-%{_iconsdir}/hicolor/*/apps/goa-*.png
+%{_iconsdir}/hicolor/*/apps/*.png
+%{_iconsdir}/hicolor/*/apps/*.svg
 %{_mandir}/man8/goa-daemon.8*
 %{_libdir}/girepository-1.0/Goa-1.0.typelib
 %{_datadir}/gnome-online-accounts
@@ -155,7 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgoa-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgoa-1.0.so.0
 %attr(755,root,root) %{_libdir}/libgoa-backend-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgoa-backend-1.0.so.0
+%attr(755,root,root) %ghost %{_libdir}/libgoa-backend-1.0.so.1
 
 %files devel
 %defattr(644,root,root,755)
