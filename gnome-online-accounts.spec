@@ -6,7 +6,7 @@ Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
 Version:	3.10.2
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.10/%{name}-%{version}.tar.xz
@@ -132,12 +132,13 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 %update_icon_cache hicolor
 
 %postun
-/sbin/ldconfig
 %update_icon_cache hicolor
+
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f gnome-online-accounts.lang
 %defattr(644,root,root,755)
