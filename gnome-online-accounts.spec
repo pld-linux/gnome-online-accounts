@@ -1,19 +1,25 @@
 #
 # Conditional build:
-%bcond_with	kerberos5	# Kerberos 5 support [TODO: heimdal vs MIT]
+%bcond_with	kerberos5	# Kerberos 5 support [TODO: heimdal support; needs MIT currently]
+%bcond_with	cheese		# Cheese webcam support in TPAW
+%bcond_with	uoa		# single sign-on (aka Ubuntu Online Accounts) in TPAW
 
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.10.2
-Release:	2
+Version:	3.10.3
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	1b13b28c9a58a3b5501e6f44df984ea2
+# Source0-md5:	37627e71bf5098b59947b8e1529b3991
 URL:		http://www.gnome.org/
+# account-plugin / libaccount-plugin / gnome-control-center-signon ???
+%{?with_uoa:BuildRequires:	account-plugin-devel}
 BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake >= 1:1.9
+BuildRequires:	automake >= 1:1.11
+%{?with_cheese:BuildRequires:	cheese-gtk-devel}
+BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-common
@@ -22,23 +28,28 @@ BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.6.0
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	gtk-webkit3-devel >= 2.2.0
-BuildRequires:	intltool >= 0.40.1
+BuildRequires:	intltool >= 0.50.0
 BuildRequires:	json-glib-devel
-BuildRequires:	libsecret-devel
+%{?with_uoa:BuildRequires:	libaccounts-devel >= 1.4}
+BuildRequires:	libsecret-devel >= 0.5
+%{?with_uoa:BuildRequires:	libsignon-devel >= 1.1}
 BuildRequires:	libsoup-devel >= 2.42.0
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libxml2-devel >= 2
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig
 BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	telepathy-glib-devel
+BuildRequires:	telepathy-glib-devel >= 0.20
+%{?with_uoa:BuildRequires:	telepathy-mission-control-devel >= 5.13.1}
+BuildRequires:	udev-glib-devel
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 Requires:	%{name}-libs = %{version}-%{release}
 %if %{with kerberos5}
-BuildRequires:	/usr/bin/krb5-config
 BuildRequires:	gcr-devel >= 3
+BuildRequires:	krb5-devel
 %endif
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
@@ -113,9 +124,11 @@ Dokumentacja API GOA.
 %configure \
 	--disable-silent-rules \
 	--disable-static \
+	%{!?with_uoa:--disable-ubuntu-online-accounts} \
 	--enable-gtk-doc \
 	%{?with_kerberos5:--enable-kerberos} \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	%{!?with_cheese:--without-cheese} \
 %{__make}
 
 %install
