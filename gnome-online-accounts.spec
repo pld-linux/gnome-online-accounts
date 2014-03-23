@@ -1,7 +1,6 @@
 #
 # Conditional build:
 %bcond_with	kerberos5	# Kerberos 5 support [TODO: heimdal support; needs MIT currently]
-%bcond_with	cheese		# Cheese webcam support in TPAW
 %bcond_with	uoa		# single sign-on (aka Ubuntu Online Accounts) in TPAW
 
 Summary:	Provide online accounts information
@@ -18,7 +17,6 @@ URL:		http://www.gnome.org/
 %{?with_uoa:BuildRequires:	account-plugin-devel}
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
-%{?with_cheese:BuildRequires:	cheese-gtk-devel}
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.36.0
@@ -117,18 +115,24 @@ Dokumentacja API GOA.
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+cd telepathy-account-widgets
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd ..
 %configure \
 	--disable-silent-rules \
 	--disable-static \
 	%{!?with_uoa:--disable-ubuntu-online-accounts} \
 	--enable-gtk-doc \
 	%{?with_kerberos5:--enable-kerberos} \
-	--with-html-dir=%{_gtkdocdir} \
-	%{!?with_cheese:--without-cheese} \
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
@@ -155,7 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f gnome-online-accounts.lang
 %defattr(644,root,root,755)
-%doc NEWS
+%doc NEWS README
 %attr(755,root,root) %{_libexecdir}/goa-daemon
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_iconsdir}/hicolor/*/apps/*.png
