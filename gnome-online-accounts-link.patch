@@ -1,0 +1,20 @@
+--- gnome-online-accounts-3.10.3/telepathy-account-widgets/tp-account-widgets/Makefile.am.orig	2014-03-18 16:05:06.000000000 +0100
++++ gnome-online-accounts-3.10.3/telepathy-account-widgets/tp-account-widgets/Makefile.am	2014-03-24 16:51:19.153929421 +0100
+@@ -90,6 +90,9 @@
+ 	$(nocheck_sources)				\
+ 	$(NULL)
+ 
++libtp_account_widgets_la_LIBADD =			\
++	$(TPAW_LIBS)
++
+ # these are sources that depend on Ubuntu Online Accounts
+ uoa_sources = \
+ 	tpaw-uoa-utils.c \
+@@ -98,6 +101,7 @@
+ 
+ if HAVE_UOA
+ libtp_account_widgets_la_SOURCES += $(uoa_sources)
++libtp_account_widgets_la_LIBADD += $(UOA_LIBS)
+ EXTRA_DIST =
+ else
+ EXTRA_DIST = $(uoa_sources)

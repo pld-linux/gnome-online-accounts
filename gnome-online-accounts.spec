@@ -12,9 +12,8 @@ License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.10/%{name}-%{version}.tar.xz
 # Source0-md5:	37627e71bf5098b59947b8e1529b3991
+Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
-# account-plugin / libaccount-plugin / gnome-control-center-signon ???
-%{?with_uoa:BuildRequires:	account-plugin-devel}
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
@@ -28,9 +27,10 @@ BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	gtk-webkit3-devel >= 2.2.0
 BuildRequires:	intltool >= 0.50.0
 BuildRequires:	json-glib-devel
-%{?with_uoa:BuildRequires:	libaccounts-devel >= 1.4}
+%{?with_uoa:BuildRequires:	libaccount-plugin-devel}
+%{?with_uoa:BuildRequires:	libaccounts-glib-devel >= 1.4}
 BuildRequires:	libsecret-devel >= 0.5
-%{?with_uoa:BuildRequires:	libsignon-devel >= 1.1}
+%{?with_uoa:BuildRequires:	libsignon-glib-devel >= 1.1}
 BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libxml2-devel >= 2
@@ -69,7 +69,11 @@ Group:		Libraries
 Requires:	glib2 >= 1:2.36.0
 Requires:	gtk+3 >= 3.6.0
 Requires:	gtk-webkit3 >= 2.2.0
+%{?with_uoa:Requires:	libaccounts-glib >= 1.4}
+Requires:	libsecret >= 0.5
+%{?with_uoa:Requires:	libsignon-glib >= 1.1}
 Requires:	libsoup >= 2.42.0
+Requires:	telepathy-glib >= 0.20
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
 
 %description libs
@@ -108,6 +112,7 @@ Dokumentacja API GOA.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__gnome_doc_prepare}
