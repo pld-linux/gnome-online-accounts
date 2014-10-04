@@ -6,12 +6,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.12.4
+Version:	3.14.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	b673101d03f96c3d82bf18fde2e7701c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.14/%{name}-%{version}.tar.xz
+# Source0-md5:	da3791e872cd90bacb7fd51b3b710d26
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.50
@@ -25,7 +25,7 @@ BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	gtk-webkit3-devel >= 2.2.0
-BuildRequires:	intltool >= 0.50.0
+BuildRequires:	intltool >= 0.50.1
 BuildRequires:	json-glib-devel
 %{?with_uoa:BuildRequires:	libaccount-plugin-devel}
 %{?with_uoa:BuildRequires:	libaccounts-glib-devel >= 1.4}
@@ -167,6 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc NEWS README
 %attr(755,root,root) %{_libexecdir}/goa-daemon
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
+%{_datadir}/glib-2.0/schemas/org.gnome.online-accounts.gschema.xml
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_iconsdir}/hicolor/*/apps/*.svg
 %{_mandir}/man8/goa-daemon.8*
