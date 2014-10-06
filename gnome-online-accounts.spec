@@ -14,7 +14,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.14/%{nam
 # Source0-md5:	da3791e872cd90bacb7fd51b3b710d26
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
-BuildRequires:	autoconf >= 2.50
+BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-devel >= 0.17
@@ -30,7 +30,7 @@ BuildRequires:	json-glib-devel
 %{?with_uoa:BuildRequires:	libaccount-plugin-devel}
 %{?with_uoa:BuildRequires:	libaccounts-glib-devel >= 1.4}
 BuildRequires:	libsecret-devel >= 0.5
-%{?with_uoa:BuildRequires:	libsignon-glib-devel >= 1.1}
+%{?with_uoa:BuildRequires:	libsignon-glib-devel >= 1.8}
 BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libxml2-devel >= 2
@@ -39,7 +39,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	telepathy-glib-devel >= 0.20
+BuildRequires:	telepathy-glib-devel >= 0.22.0
 %{?with_uoa:BuildRequires:	telepathy-mission-control-devel >= 5.13.1}
 BuildRequires:	udev-glib-devel
 BuildRequires:	xorg-lib-libX11-devel
@@ -71,9 +71,9 @@ Requires:	gtk+3 >= 3.12.0
 Requires:	gtk-webkit3 >= 2.2.0
 %{?with_uoa:Requires:	libaccounts-glib >= 1.4}
 Requires:	libsecret >= 0.5
-%{?with_uoa:Requires:	libsignon-glib >= 1.1}
+%{?with_uoa:Requires:	libsignon-glib >= 1.8}
 Requires:	libsoup >= 2.42.0
-Requires:	telepathy-glib >= 0.20
+Requires:	telepathy-glib >= 0.22.0
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
 
 %description libs
