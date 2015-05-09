@@ -2,16 +2,17 @@
 # Conditional build:
 %bcond_with	kerberos5	# Kerberos 5 support [TODO: heimdal support; needs MIT currently]
 %bcond_with	uoa		# single sign-on (aka Ubuntu Online Accounts) in TPAW
+%bcond_with	webkitinspector	# WebKitInspector for the embedded web view
 
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.14.3
-Release:	2
+Version:	3.16.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.14/%{name}-%{version}.tar.xz
-# Source0-md5:	e67d0b293a3843c5a9f427be7416a682
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.16/%{name}-%{version}.tar.xz
+# Source0-md5:	03dc60cb035019405561c4055c3f5995
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
@@ -24,7 +25,7 @@ BuildRequires:	gnome-doc-utils >= 0.12.1
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	gtk-doc >= 1.3
-BuildRequires:	gtk-webkit3-devel >= 2.2.0
+BuildRequires:	gtk-webkit4-devel >= 2.7.2
 BuildRequires:	intltool >= 0.50.1
 BuildRequires:	json-glib-devel
 %{?with_uoa:BuildRequires:	libaccount-plugin-devel}
@@ -68,7 +69,7 @@ Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
 Requires:	glib2 >= 1:2.36.0
 Requires:	gtk+3 >= 3.12.0
-Requires:	gtk-webkit3 >= 2.2.0
+Requires:	gtk-webkit4 >= 2.7.2
 %{?with_uoa:Requires:	libaccounts-glib >= 1.4}
 Requires:	libsecret >= 0.5
 %{?with_uoa:Requires:	libsignon-glib >= 1.8}
@@ -135,8 +136,11 @@ cd ..
 	--disable-silent-rules \
 	--disable-static \
 	%{!?with_uoa:--disable-ubuntu-online-accounts} \
+	--enable-foursquare \
 	--enable-gtk-doc \
+	%{?with_webkitinspector:--enable-inspector} \
 	%{?with_kerberos5:--enable-kerberos} \
+	--enable-media-server \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
@@ -147,6 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/goa-1.0/web-extensions/lib*.la
 
 %find_lang gnome-online-accounts --all-name
 
@@ -166,10 +171,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc NEWS README
 %attr(755,root,root) %{_libexecdir}/goa-daemon
+%dir %{_libdir}/goa-1.0
+%dir %{_libdir}/goa-1.0/web-extensions
+%attr(755,root,root) %{_libdir}/goa-1.0/web-extensions/libgoawebextension.so
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_datadir}/glib-2.0/schemas/org.gnome.online-accounts.gschema.xml
-%{_iconsdir}/hicolor/*/apps/*.png
-%{_iconsdir}/hicolor/*/apps/*.svg
+%{_iconsdir}/hicolor/*/apps/goa-account*.png
+%{_iconsdir}/hicolor/*/apps/im-*.png
+%{_iconsdir}/hicolor/*/apps/im-*.svg
 %{_mandir}/man8/goa-daemon.8*
 %{_libdir}/girepository-1.0/Goa-1.0.typelib
 %{_datadir}/gnome-online-accounts
