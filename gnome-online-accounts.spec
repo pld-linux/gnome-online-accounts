@@ -7,12 +7,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.16.3
+Version:	3.18.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.16/%{name}-%{version}.tar.xz
-# Source0-md5:	aed85694d99815bd2a59c2adb5995dae
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.18/%{name}-%{version}.tar.xz
+# Source0-md5:	7fa77e953860b55a3a0579cd1bd2eb7a
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
