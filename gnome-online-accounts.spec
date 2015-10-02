@@ -21,7 +21,6 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-common
-BuildRequires:	gnome-doc-utils >= 0.12.1
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	gtk-doc >= 1.3
@@ -36,7 +35,7 @@ BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libxml2-devel >= 2
 BuildRequires:	libxslt-progs
-BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
@@ -116,8 +115,6 @@ Dokumentacja API GOA.
 %patch0 -p1
 
 %build
-%{__gnome_doc_prepare}
-%{__gnome_doc_common}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
