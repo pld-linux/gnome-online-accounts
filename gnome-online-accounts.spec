@@ -7,12 +7,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.18.4
+Version:	3.20.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	f4322b9914e20f9bd7e685fe221bc3ac
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.20/%{name}-%{version}.tar.xz
+# Source0-md5:	47ff0c86ad7b7ecb50aa6d6aa5c58ccd
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
@@ -22,7 +22,7 @@ BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.6.2
-BuildRequires:	gtk+3-devel >= 3.12.0
+BuildRequires:	gtk+3-devel >= 3.20.0
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	gtk-webkit4-devel >= 2.7.2
 BuildRequires:	intltool >= 0.50.1
@@ -67,7 +67,7 @@ Summary:	gnome-online-accounts libraries
 Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
 Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.12.0
+Requires:	gtk+3 >= 3.20.0
 Requires:	gtk-webkit4 >= 2.7.2
 %{?with_uoa:Requires:	libaccounts-glib >= 1.4}
 Requires:	libsecret >= 0.5
@@ -103,6 +103,9 @@ Summary:	GOA API documentation
 Summary(pl.UTF-8):	Dokumentacja API GOA
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 GOA API documentation.
@@ -110,9 +113,24 @@ GOA API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API GOA.
 
+%package -n vala-gnome-online-accounts
+Summary:	Vala API for gnome-online-accounts libraries
+Summary(pl.UTF-8):	API języka Vala do bibliotek gnome-online-accounts
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	vala >= 2:0.16.0
+
+%description -n vala-gnome-online-accounts
+Vala API for gnome-online-accounts libraries.
+
+%description -n vala-gnome-online-accounts -l pl.UTF-8
+API języka Vala do bibliotek gnome-online-accounts.
+
 %prep
 %setup -q
 %patch0 -p1
+
+rm m4/glib-gettext.m4
 
 %build
 %{__glib_gettextize}
@@ -201,3 +219,8 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/goa
+
+%files -n vala-gnome-online-accounts
+%defattr(644,root,root,755)
+%{_datadir}/vala/vapi/goa-1.0.deps
+%{_datadir}/vala/vapi/goa-1.0.vapi
