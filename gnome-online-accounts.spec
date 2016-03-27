@@ -119,6 +119,9 @@ Summary(pl.UTF-8):	API języka Vala do bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.16.0
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n vala-gnome-online-accounts
 Vala API for gnome-online-accounts libraries.
