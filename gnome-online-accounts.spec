@@ -88,7 +88,7 @@ Summary(pl.UTF-8):	Pliki programistyczne bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
-Requires:	gtk+3-devel >= 3.12.0
+Requires:	gtk+3-devel >= 3.20.0
 
 %description devel
 The gnome-online-accounts-devel package contains the header files for
