@@ -7,12 +7,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.20.1
+Version:	3.20.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	d7b3b82c6d1902cadf4cfe0ef5547eb1
+# Source0-md5:	9d1dfb3fa204e790cea5ed782d5eddf2
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
