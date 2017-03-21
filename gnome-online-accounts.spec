@@ -7,19 +7,19 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.22.5
+Version:	3.24.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.22/%{name}-%{version}.tar.xz
-# Source0-md5:	908e3614fac01badb1e50c5bad6ff607
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.24/%{name}-%{version}.tar.xz
+# Source0-md5:	c024b92ad70db1e8ba2553e755f00c43
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	glib2-devel >= 1:2.40.0
+BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.20.0
@@ -66,7 +66,7 @@ sieciowych.
 Summary:	gnome-online-accounts libraries
 Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
-Requires:	glib2 >= 1:2.40.0
+Requires:	glib2 >= 1:2.44.0
 Requires:	gtk+3 >= 3.20.0
 Requires:	gtk-webkit4 >= 2.7.2
 %{?with_uoa:Requires:	libaccounts-glib >= 1.4}
@@ -87,7 +87,7 @@ Summary:	Development files for gnome-online-accounts libraries
 Summary(pl.UTF-8):	Pliki programistyczne bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.40.0
+Requires:	glib2-devel >= 1:2.44.0
 Requires:	gtk+3-devel >= 3.20.0
 
 %description devel
