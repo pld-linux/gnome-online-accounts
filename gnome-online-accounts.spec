@@ -7,19 +7,19 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.24.1
+Version:	3.26.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.24/%{name}-%{version}.tar.xz
-# Source0-md5:	0ec1ec07fb1b03c3eda2cbbb91c95f52
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.26/%{name}-%{version}.tar.xz
+# Source0-md5:	c59d4bfb43bc723e82e4154a5e6e61f7
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	glib2-devel >= 1:2.44.0
+BuildRequires:	glib2-devel >= 1:2.52.0
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.20.0
@@ -66,7 +66,7 @@ sieciowych.
 Summary:	gnome-online-accounts libraries
 Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
-Requires:	glib2 >= 1:2.44.0
+Requires:	glib2 >= 1:2.52.0
 Requires:	gtk+3 >= 3.20.0
 Requires:	gtk-webkit4 >= 2.7.2
 %{?with_uoa:Requires:	libaccounts-glib >= 1.4}
@@ -87,7 +87,7 @@ Summary:	Development files for gnome-online-accounts libraries
 Summary(pl.UTF-8):	Pliki programistyczne bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.44.0
+Requires:	glib2-devel >= 1:2.52.0
 Requires:	gtk+3-devel >= 3.20.0
 
 %description devel
@@ -157,7 +157,7 @@ cd ..
 	--enable-foursquare \
 	--enable-gtk-doc \
 	%{?with_webkitinspector:--enable-inspector} \
-	%{?with_kerberos5:--enable-kerberos} \
+	%{__enable_disable kerberos5 kerberos} \
 	--enable-media-server \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -195,10 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_datadir}/glib-2.0/schemas/org.gnome.online-accounts.gschema.xml
 %{_iconsdir}/hicolor/*/apps/goa-account*.png
-%{_iconsdir}/hicolor/*/apps/im-*.png
-%{_iconsdir}/hicolor/*/apps/im-*.svg
 %{_mandir}/man8/goa-daemon.8*
-%{_datadir}/gnome-online-accounts
 
 %files libs
 %defattr(644,root,root,755)
