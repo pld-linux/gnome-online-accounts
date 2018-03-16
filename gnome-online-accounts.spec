@@ -7,12 +7,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.26.2
+Version:	3.28.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.26/%{name}-%{version}.tar.xz
-# Source0-md5:	bf68504b86b40f79269b323e243fb275
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.28/%{name}-%{version}.tar.xz
+# Source0-md5:	25827cac1609cf1b5a089d9615d47d86
 Patch0:		%{name}-link.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
@@ -24,8 +24,7 @@ BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.20.0
 BuildRequires:	gtk-doc >= 1.3
-BuildRequires:	gtk-webkit4-devel >= 2.7.2
-BuildRequires:	intltool >= 0.50.1
+BuildRequires:	gtk-webkit4-devel >= 2.12.0
 BuildRequires:	json-glib-devel
 %{?with_uoa:BuildRequires:	libaccount-plugin-devel}
 %{?with_uoa:BuildRequires:	libaccounts-glib-devel >= 1.4}
@@ -68,7 +67,7 @@ Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
 Requires:	glib2 >= 1:2.52.0
 Requires:	gtk+3 >= 3.20.0
-Requires:	gtk-webkit4 >= 2.7.2
+Requires:	gtk-webkit4 >= 2.12.0
 %{?with_uoa:Requires:	libaccounts-glib >= 1.4}
 Requires:	libsecret >= 0.5
 %{?with_uoa:Requires:	libsignon-glib >= 1.8}
@@ -133,11 +132,7 @@ API języka Vala do bibliotek gnome-online-accounts.
 %setup -q
 %patch0 -p1
 
-rm m4/glib-gettext.m4
-
 %build
-%{__glib_gettextize}
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
