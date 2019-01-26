@@ -7,13 +7,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.28.0
+Version:	3.30.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.28/%{name}-%{version}.tar.xz
-# Source0-md5:	25827cac1609cf1b5a089d9615d47d86
-Patch0:		%{name}-link.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.30/%{name}-%{version}.tar.xz
+# Source0-md5:	3d6648929d3bec49f7ff00e773bdb90c
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -130,7 +129,6 @@ API języka Vala do bibliotek gnome-online-accounts.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -138,13 +136,6 @@ API języka Vala do bibliotek gnome-online-accounts.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-cd telepathy-account-widgets
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-cd ..
 %configure \
 	--disable-silent-rules \
 	--disable-static \
@@ -190,7 +181,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_datadir}/glib-2.0/schemas/org.gnome.online-accounts.gschema.xml
 %{_iconsdir}/hicolor/*/apps/goa-account*.png
-%{_mandir}/man8/goa-daemon.8*
 
 %files libs
 %defattr(644,root,root,755)
