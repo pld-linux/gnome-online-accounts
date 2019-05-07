@@ -1,34 +1,29 @@
 #
 # Conditional build:
 %bcond_with	kerberos5	# Kerberos 5 support [TODO: heimdal support; needs MIT currently]
-%bcond_with	uoa		# single sign-on (aka Ubuntu Online Accounts) in TPAW
 %bcond_with	webkitinspector	# WebKitInspector for the embedded web view
 
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.30.1
+Version:	3.32.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.30/%{name}-%{version}.tar.xz
-# Source0-md5:	3d6648929d3bec49f7ff00e773bdb90c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.32/%{name}-%{version}.tar.xz
+# Source0-md5:	c9d2041425507b586ba04daffc817cfe
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
-BuildRequires:	gettext-tools >= 0.17
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.52.0
-BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.20.0
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	gtk-webkit4-devel >= 2.12.0
 BuildRequires:	json-glib-devel
-%{?with_uoa:BuildRequires:	libaccount-plugin-devel}
-%{?with_uoa:BuildRequires:	libaccounts-glib-devel >= 1.4}
 BuildRequires:	libsecret-devel >= 0.5
-%{?with_uoa:BuildRequires:	libsignon-glib-devel >= 1.8}
 BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	libxml2-devel >= 2
@@ -37,8 +32,6 @@ BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	telepathy-glib-devel >= 0.22.0
-%{?with_uoa:BuildRequires:	telepathy-mission-control-devel >= 5.13.1}
 BuildRequires:	udev-glib-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
@@ -67,11 +60,8 @@ Group:		Libraries
 Requires:	glib2 >= 1:2.52.0
 Requires:	gtk+3 >= 3.20.0
 Requires:	gtk-webkit4 >= 2.12.0
-%{?with_uoa:Requires:	libaccounts-glib >= 1.4}
 Requires:	libsecret >= 0.5
-%{?with_uoa:Requires:	libsignon-glib >= 1.8}
 Requires:	libsoup >= 2.42.0
-Requires:	telepathy-glib >= 0.22.0
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
 
 %description libs
@@ -139,11 +129,11 @@ API języka Vala do bibliotek gnome-online-accounts.
 %configure \
 	--disable-silent-rules \
 	--disable-static \
-	%{!?with_uoa:--disable-ubuntu-online-accounts} \
-	--enable-foursquare \
+	--enable-documentation \
 	--enable-gtk-doc \
 	%{?with_webkitinspector:--enable-inspector} \
 	%{__enable_disable kerberos5 kerberos} \
+	--enable-lastfm \
 	--enable-media-server \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -180,7 +170,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/goa-1.0/web-extensions/libgoawebextension.so
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_datadir}/glib-2.0/schemas/org.gnome.online-accounts.gschema.xml
-%{_iconsdir}/hicolor/*/apps/goa-account*.png
+%{_iconsdir}/hicolor/scalable/apps/goa-account-*.svg
+%{_iconsdir}/hicolor/symbolic/apps/goa-account-*-symbolic.svg
+%{_mandir}/man8/goa-daemon.8*
 
 %files libs
 %defattr(644,root,root,755)
