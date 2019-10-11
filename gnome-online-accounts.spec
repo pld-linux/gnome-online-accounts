@@ -6,12 +6,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.32.0
+Version:	3.34.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.32/%{name}-%{version}.tar.xz
-# Source0-md5:	c9d2041425507b586ba04daffc817cfe
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.34/%{name}-%{version}.tar.xz
+# Source0-md5:	38ba5a50071c0a07fceda2e1c2edadfa
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -126,10 +126,12 @@ API języka Vala do bibliotek gnome-online-accounts.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# "fedora" is krb5+gcr
 %configure \
 	--disable-silent-rules \
 	--disable-static \
 	--enable-documentation \
+	%{!?with_kerberos:--disable-fedora} \
 	--enable-gtk-doc \
 	%{?with_webkitinspector:--enable-inspector} \
 	%{__enable_disable kerberos5 kerberos} \
