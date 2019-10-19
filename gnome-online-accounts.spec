@@ -6,13 +6,13 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.34.0
+Version:	3.34.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.34/%{name}-%{version}.tar.xz
-# Source0-md5:	38ba5a50071c0a07fceda2e1c2edadfa
-URL:		http://www.gnome.org/
+# Source0-md5:	aa94d1dd07ca53729a036b5df1c78c05
+URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
@@ -172,8 +172,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/goa-1.0/web-extensions/libgoawebextension.so
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_datadir}/glib-2.0/schemas/org.gnome.online-accounts.gschema.xml
-%{_iconsdir}/hicolor/scalable/apps/goa-account-*.svg
-%{_iconsdir}/hicolor/symbolic/apps/goa-account-*-symbolic.svg
+%{_iconsdir}/hicolor/scalable/apps/goa-account*.svg
+%{_iconsdir}/hicolor/symbolic/apps/goa-account*-symbolic.svg
 %{_mandir}/man8/goa-daemon.8*
 
 %files libs
