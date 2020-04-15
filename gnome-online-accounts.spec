@@ -6,12 +6,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.34.1
+Version:	3.36.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.34/%{name}-%{version}.tar.xz
-# Source0-md5:	aa94d1dd07ca53729a036b5df1c78c05
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.36/%{name}-%{version}.tar.xz
+# Source0-md5:	44a37e1f8d4cac1dca0c41b57b49c2d0
 URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -35,11 +35,11 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-glib-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
-Requires:	%{name}-libs = %{version}-%{release}
 %if %{with kerberos5}
 BuildRequires:	gcr-devel >= 3
 BuildRequires:	krb5-devel
 %endif
+Requires:	%{name}-libs = %{version}-%{release}
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
