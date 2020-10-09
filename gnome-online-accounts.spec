@@ -6,12 +6,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.36.0
+Version:	3.38.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.36/%{name}-%{version}.tar.xz
-# Source0-md5:	44a37e1f8d4cac1dca0c41b57b49c2d0
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-online-accounts/3.38/%{name}-%{version}.tar.xz
+# Source0-md5:	fa62ae47bfe3b78a72db5d414b8de4d8
 URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -21,7 +21,7 @@ BuildRequires:	glib2-devel >= 1:2.52.0
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.20.0
 BuildRequires:	gtk-doc >= 1.3
-BuildRequires:	gtk-webkit4-devel >= 2.12.0
+BuildRequires:	gtk-webkit4-devel >= 2.26.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libsecret-devel >= 0.5
 BuildRequires:	libsoup-devel >= 2.42.0
@@ -30,7 +30,7 @@ BuildRequires:	libxml2-devel >= 2
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	rest-devel >= 0.7
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-glib-devel
 BuildRequires:	xorg-lib-libX11-devel
@@ -59,7 +59,7 @@ Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
 Requires:	glib2 >= 1:2.52.0
 Requires:	gtk+3 >= 3.20.0
-Requires:	gtk-webkit4 >= 2.12.0
+Requires:	gtk-webkit4 >= 2.26.0
 Requires:	libsecret >= 0.5
 Requires:	libsoup >= 2.42.0
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
@@ -91,9 +91,7 @@ Summary:	GOA API documentation
 Summary(pl.UTF-8):	Dokumentacja API GOA
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 GOA API documentation.
@@ -107,9 +105,7 @@ Summary(pl.UTF-8):	API języka Vala do bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.16.0
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description -n vala-gnome-online-accounts
 Vala API for gnome-online-accounts libraries.
