@@ -91,7 +91,7 @@ Summary:	GOA API documentation
 Summary(pl.UTF-8):	Dokumentacja API GOA
 Group:		Documentation
 Requires:	gtk-doc-common
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 GOA API documentation.
@@ -105,7 +105,7 @@ Summary(pl.UTF-8):	API języka Vala do bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.16.0
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description -n vala-gnome-online-accounts
 Vala API for gnome-online-accounts libraries.
