@@ -1,42 +1,39 @@
 #
 # Conditional build:
+%bcond_with	fedora		# Kerberos 5 with Fedora realm
 %bcond_with	kerberos5	# Kerberos 5 support [TODO: heimdal support; needs MIT currently]
 %bcond_with	webkitinspector	# WebKitInspector for the embedded web view
 
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.44.0
+Version:	3.46.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.44/%{name}-%{version}.tar.xz
-# Source0-md5:	ae928c27456d3a3f911d964c28d10754
+Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.46/%{name}-%{version}.tar.xz
+# Source0-md5:	018a7d08ec2522e472c44da2e24f3429
 URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
-BuildRequires:	autoconf >= 2.64
-BuildRequires:	automake >= 1:1.11
-BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-tools >= 0.19.8
-BuildRequires:	glib2-devel >= 1:2.52.0
+BuildRequires:	glib2-devel >= 1:2.67.4
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= 3.20.0
 BuildRequires:	gtk-doc >= 1.3
-BuildRequires:	gtk-webkit4-devel >= 2.26.0
+BuildRequires:	gtk-webkit4.1-devel >= 2.33.1
 BuildRequires:	json-glib-devel
 BuildRequires:	libsecret-devel >= 0.5
-BuildRequires:	libsoup-devel >= 2.42.0
-BuildRequires:	libtool >= 2:2.2
+BuildRequires:	libsoup3-devel >= 3.0
 BuildRequires:	libxml2-devel >= 2
 BuildRequires:	libxslt-progs
+BuildRequires:	meson >= 0.57.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.16
-BuildRequires:	rest-devel >= 0.7
+BuildRequires:	rest1-devel >= 0.9.0
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	udev-glib-devel
-BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
-%if %{with kerberos5}
+%if %{with fedora} || %{with kerberos5}
 BuildRequires:	gcr-devel >= 3
 BuildRequires:	krb5-devel
 %endif
@@ -58,11 +55,11 @@ sieciowych.
 Summary:	gnome-online-accounts libraries
 Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
-Requires:	glib2 >= 1:2.52.0
+Requires:	glib2 >= 1:2.67.4
 Requires:	gtk+3 >= 3.20.0
-Requires:	gtk-webkit4 >= 2.26.0
+Requires:	gtk-webkit4.1 >= 2.33.1
 Requires:	libsecret >= 0.5
-Requires:	libsoup >= 2.42.0
+Requires:	libsoup3 >= 3.0
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
 
 %description libs
@@ -76,7 +73,7 @@ Summary:	Development files for gnome-online-accounts libraries
 Summary(pl.UTF-8):	Pliki programistyczne bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.52.0
+Requires:	glib2-devel >= 1:2.67.4
 Requires:	gtk+3-devel >= 3.20.0
 
 %description devel
@@ -118,33 +115,20 @@ API języka Vala do bibliotek gnome-online-accounts.
 %setup -q
 
 %build
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-# "fedora" is krb5+gcr
-%configure \
-	--disable-silent-rules \
-	--disable-static \
-	--enable-documentation \
-	%{!?with_kerberos:--disable-fedora} \
-	--enable-gtk-doc \
-	%{?with_webkitinspector:--enable-inspector} \
-	%{__enable_disable kerberos5 kerberos} \
-	--enable-lastfm \
-	--enable-media-server \
-	--with-html-dir=%{_gtkdocdir}
-%{__make}
+%meson build \
+	%{?with_fedora:-Dfedora=true} \
+	-Dgtk_doc=true \
+	%{?with_webkitinspector:-Dinspector=true} \
+	%{!?with_kerberos:-Dkerberos=false} \
+	-Dman=true \
+	-Dmedia_server=true
+
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/goa-1.0/web-extensions/lib*.la
+%ninja_install -C build
 
 %find_lang gnome-online-accounts --all-name
 
@@ -164,6 +148,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc NEWS README
 %attr(755,root,root) %{_libexecdir}/goa-daemon
+%if %{with fedora} || %{with kerberos5}
+%attr(755,root,root) %{_libexecdir}/goa-identity-service
+%endif
 %dir %{_libdir}/goa-1.0
 %dir %{_libdir}/goa-1.0/web-extensions
 %attr(755,root,root) %{_libdir}/goa-1.0/web-extensions/libgoawebextension.so
