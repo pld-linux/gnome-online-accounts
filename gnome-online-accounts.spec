@@ -7,13 +7,14 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.46.0
+Version:	3.48.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.46/%{name}-%{version}.tar.xz
-# Source0-md5:	018a7d08ec2522e472c44da2e24f3429
+Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.48/%{name}-%{version}.tar.xz
+# Source0-md5:	9406339e88caf9ecd11191f96b6cc10e
 URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
+BuildRequires:	dbus-devel
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.67.4
 BuildRequires:	gobject-introspection-devel >= 0.6.2
@@ -32,6 +33,7 @@ BuildRequires:	rest1-devel >= 0.9.0
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	vala
 BuildRequires:	xz
 %if %{with fedora} || %{with kerberos5}
 BuildRequires:	gcr-devel >= 3
