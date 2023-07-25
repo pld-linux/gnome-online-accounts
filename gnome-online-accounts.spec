@@ -13,6 +13,7 @@ License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.48/%{name}-%{version}.tar.xz
 # Source0-md5:	9406339e88caf9ecd11191f96b6cc10e
+Patch0:		no-gnome-post-install.patch
 URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
 BuildRequires:	dbus-devel
 BuildRequires:	gettext-tools >= 0.19.8
@@ -115,6 +116,7 @@ API języka Vala do bibliotek gnome-online-accounts.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %meson build \

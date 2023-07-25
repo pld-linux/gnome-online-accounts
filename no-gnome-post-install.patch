@@ -1,0 +1,14 @@
+--- gnome-online-accounts-3.48.0/meson.build.orig	2023-03-17 23:17:11.000000000 +0100
++++ gnome-online-accounts-3.48.0/meson.build	2023-07-25 09:54:08.115954307 +0200
+@@ -265,11 +265,6 @@
+ 
+ subdir('po')
+ 
+-gnome.post_install(
+-  glib_compile_schemas: enable_goabackend,
+-  gtk_update_icon_cache: true,
+-)
+-
+ summary({
+     'prefix': goa_prefix,
+     'libdir': goa_libdir,
