@@ -2,27 +2,26 @@
 # Conditional build:
 %bcond_with	fedora		# Kerberos 5 with Fedora realm
 %bcond_with	kerberos5	# Kerberos 5 support [TODO: heimdal support; needs MIT currently]
-%bcond_with	webkitinspector	# WebKitInspector for the embedded web view
 
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.48.1
+Version:	3.50.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.48/%{name}-%{version}.tar.xz
-# Source0-md5:	a1ebec6a247fd1dea07f66bf6e37f7c3
+Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.50/%{name}-%{version}.tar.xz
+# Source0-md5:	f28ddf850689a9f3f646e3ae0dbb8b03
 Patch0:		no-gnome-post-install.patch
 URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
 BuildRequires:	dbus-devel
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.67.4
 BuildRequires:	gobject-introspection-devel >= 0.6.2
-BuildRequires:	gtk+3-devel >= 3.20.0
+BuildRequires:	gtk4-devel >= 4.10
 BuildRequires:	gtk-doc >= 1.3
-BuildRequires:	gtk-webkit4.1-devel >= 2.33.1
 BuildRequires:	json-glib-devel
+BuildRequires:	libadwaita-devel >= 1.4
 BuildRequires:	libsecret-devel >= 0.5
 BuildRequires:	libsoup3-devel >= 3.0
 BuildRequires:	libxml2-devel >= 2
@@ -37,7 +36,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 %if %{with fedora} || %{with kerberos5}
-BuildRequires:	gcr-devel >= 3
+BuildRequires:	gcr4-devel >= 4.1.0
 BuildRequires:	krb5-devel
 %endif
 Requires:	%{name}-libs = %{version}-%{release}
@@ -59,8 +58,8 @@ Summary:	gnome-online-accounts libraries
 Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
 Requires:	glib2 >= 1:2.67.4
-Requires:	gtk+3 >= 3.20.0
-Requires:	gtk-webkit4.1 >= 2.33.1
+Requires:	gtk4 >= 4.10
+Requires:	libadwaita >= 1.4
 Requires:	libsecret >= 0.5
 Requires:	libsoup3 >= 3.0
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
@@ -77,7 +76,8 @@ Summary(pl.UTF-8):	Pliki programistyczne bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.67.4
-Requires:	gtk+3-devel >= 3.20.0
+Requires:	gtk4-devel >= 4.10
+Requires:	libadwaita-devel >= 1.4
 
 %description devel
 The gnome-online-accounts-devel package contains the header files for
@@ -122,10 +122,8 @@ API języka Vala do bibliotek gnome-online-accounts.
 %meson build \
 	%{?with_fedora:-Dfedora=true} \
 	-Dgtk_doc=true \
-	%{?with_webkitinspector:-Dinspector=true} \
 	%{!?with_kerberos:-Dkerberos=false} \
-	-Dman=true \
-	-Dmedia_server=true
+	-Dman=true
 
 %ninja_build -C build
 
@@ -153,16 +151,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f gnome-online-accounts.lang
 %defattr(644,root,root,755)
-%doc NEWS README
+%doc NEWS README.md
 %attr(755,root,root) %{_libexecdir}/goa-daemon
+%attr(755,root,root) %{_libexecdir}/goa-oauth2-handler
 %if %{with fedora} || %{with kerberos5}
 %attr(755,root,root) %{_libexecdir}/goa-identity-service
 %endif
 %dir %{_libdir}/goa-1.0
-%dir %{_libdir}/goa-1.0/web-extensions
-%attr(755,root,root) %{_libdir}/goa-1.0/web-extensions/libgoawebextension.so
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_datadir}/glib-2.0/schemas/org.gnome.online-accounts.gschema.xml
+%{_desktopdir}/org.gnome.OnlineAccounts.OAuth2.desktop
 %{_iconsdir}/hicolor/scalable/apps/goa-account*.svg
 %{_iconsdir}/hicolor/symbolic/apps/goa-account*-symbolic.svg
 %{_mandir}/man8/goa-daemon.8*
@@ -172,7 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgoa-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgoa-1.0.so.0
 %attr(755,root,root) %{_libdir}/libgoa-backend-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgoa-backend-1.0.so.1
+%attr(755,root,root) %ghost %{_libdir}/libgoa-backend-1.0.so.2
 %{_libdir}/girepository-1.0/Goa-1.0.typelib
 
 %files devel
