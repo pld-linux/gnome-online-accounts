@@ -92,7 +92,6 @@ wykorzystujących gnome-online-accounts.
 Summary:	GOA API documentation
 Summary(pl.UTF-8):	Dokumentacja API GOA
 Group:		Documentation
-Requires:	gtk-doc-common
 BuildArch:	noarch
 
 %description apidocs
@@ -121,8 +120,8 @@ API języka Vala do bibliotek gnome-online-accounts.
 
 %build
 %meson build \
+	-Ddocumentation=true \
 	%{?with_fedora:-Dfedora=true} \
-	-Dgtk_doc=true \
 	%{!?with_kerberos:-Dkerberos=false} \
 	-Dman=true
 
