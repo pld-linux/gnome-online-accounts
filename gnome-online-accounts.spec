@@ -6,37 +6,38 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.50.4
+Version:	3.52.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.50/%{name}-%{version}.tar.xz
-# Source0-md5:	93cc587f17ad9c14f03bcd0b9c124f8b
+Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.52/%{name}-%{version}.tar.xz
+# Source0-md5:	666da93cd756fe419ba45fff7573d126
 Patch0:		no-gnome-post-install.patch
 URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
 BuildRequires:	dbus-devel
 BuildRequires:	gettext-tools >= 0.19.8
+BuildRequires:	gi-docgen
 BuildRequires:	glib2-devel >= 1:2.67.4
 BuildRequires:	gobject-introspection-devel >= 0.6.2
-BuildRequires:	gtk4-devel >= 4.10
-BuildRequires:	gtk-doc >= 1.3
+BuildRequires:	gtk4-devel >= 4.15.2
 BuildRequires:	json-glib-devel
-BuildRequires:	libadwaita-devel >= 1.4
+BuildRequires:	libadwaita-devel >= 1.6
 BuildRequires:	libsecret-devel >= 0.5
 BuildRequires:	libsoup3-devel >= 3.0
 BuildRequires:	libxml2-devel >= 2
 BuildRequires:	libxslt-progs
-BuildRequires:	meson >= 0.57.0
+BuildRequires:	meson >= 0.63.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	rest1-devel >= 0.9.0
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.752
+BuildRequires:	rpmbuild(macros) >= 2.029
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
 %if %{with fedora} || %{with kerberos5}
 BuildRequires:	gcr4-devel >= 4.1.0
+BuildRequires:	keyutils-devel >= 1.6.2
 BuildRequires:	krb5-devel
 %endif
 Requires:	%{name}-libs = %{version}-%{release}
@@ -58,8 +59,8 @@ Summary:	gnome-online-accounts libraries
 Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
 Requires:	glib2 >= 1:2.67.4
-Requires:	gtk4 >= 4.10
-Requires:	libadwaita >= 1.4
+Requires:	gtk4 >= 4.15.2
+Requires:	libadwaita >= 1.6
 Requires:	libsecret >= 0.5
 Requires:	libsoup3 >= 3.0
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
@@ -76,8 +77,8 @@ Summary(pl.UTF-8):	Pliki programistyczne bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.67.4
-Requires:	gtk4-devel >= 4.10
-Requires:	libadwaita-devel >= 1.4
+Requires:	gtk4-devel >= 4.15.2
+Requires:	libadwaita-devel >= 1.6
 
 %description devel
 The gnome-online-accounts-devel package contains the header files for
@@ -131,6 +132,9 @@ API języka Vala do bibliotek gnome-online-accounts.
 rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
+
+install -d $RPM_BUILD_ROOT%{_gidocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/gnome-online-accounts $RPM_BUILD_ROOT%{_gidocdir}
 
 # not supported by glibc (as of 2.37)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
@@ -186,7 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/goa
+%{_gidocdir}/gnome-online-accounts
 
 %files -n vala-gnome-online-accounts
 %defattr(644,root,root,755)
