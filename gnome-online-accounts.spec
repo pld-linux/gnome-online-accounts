@@ -15,6 +15,7 @@ Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.52/%{name}-%
 Patch0:		no-gnome-post-install.patch
 URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
 BuildRequires:	dbus-devel
+BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	gi-docgen
 BuildRequires:	glib2-devel >= 1:2.67.4
