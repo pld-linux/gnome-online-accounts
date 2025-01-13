@@ -6,14 +6,14 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.52.2
+Version:	3.52.3.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.52/%{name}-%{version}.tar.xz
-# Source0-md5:	eb5209f3cc82ec1de54e189f86e2c9c0
+# Source0-md5:	f14d6d5be4b0af4458bba52f6ffb95d7
 Patch0:		no-gnome-post-install.patch
-URL:		https://wiki.gnome.org/Projects/GnomeOnlineAccounts
+URL:		https://gnome.pages.gitlab.gnome.org/gnome-online-accounts/
 BuildRequires:	dbus-devel
 BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	gettext-tools >= 0.19.8
@@ -117,7 +117,7 @@ API języka Vala do bibliotek gnome-online-accounts.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %meson build \
