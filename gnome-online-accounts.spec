@@ -6,12 +6,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.52.3.1
+Version:	3.54.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.52/%{name}-%{version}.tar.xz
-# Source0-md5:	f14d6d5be4b0af4458bba52f6ffb95d7
+Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.54/%{name}-%{version}.tar.xz
+# Source0-md5:	8ebf2062697c81c7af1359894a3209b0
 Patch0:		no-gnome-post-install.patch
 URL:		https://gnome.pages.gitlab.gnome.org/gnome-online-accounts/
 BuildRequires:	dbus-devel
@@ -32,7 +32,7 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	rest1-devel >= 0.9.0
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 2.029
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
 BuildRequires:	xz
@@ -120,18 +120,18 @@ API języka Vala do bibliotek gnome-online-accounts.
 %patch -P0 -p1
 
 %build
-%meson build \
+%meson \
 	-Ddocumentation=true \
 	%{?with_fedora:-Dfedora=true} \
 	%{!?with_kerberos:-Dkerberos=false} \
 	-Dman=true
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 install -d $RPM_BUILD_ROOT%{_gidocdir}
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/gnome-online-accounts $RPM_BUILD_ROOT%{_gidocdir}
