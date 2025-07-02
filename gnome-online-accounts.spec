@@ -6,12 +6,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.54.3
+Version:	3.54.4
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.54/%{name}-%{version}.tar.xz
-# Source0-md5:	8187dca87e2140f625830359fe9c2ce0
+# Source0-md5:	6d45ee02784b0a69bf1e22ce29ea2188
 Patch0:		no-gnome-post-install.patch
 URL:		https://gnome.pages.gitlab.gnome.org/gnome-online-accounts/
 BuildRequires:	dbus-devel
