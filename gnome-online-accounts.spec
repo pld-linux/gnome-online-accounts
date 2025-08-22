@@ -23,6 +23,7 @@ BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk4-devel >= 4.15.2
 BuildRequires:	json-glib-devel
 BuildRequires:	libadwaita-devel >= 1.6
+BuildRequires:	librest-devel >= 0.9.0
 BuildRequires:	libsecret-devel >= 0.5
 BuildRequires:	libsoup3-devel >= 3.0
 BuildRequires:	libxml2-devel >= 2
@@ -30,7 +31,6 @@ BuildRequires:	libxslt-progs
 BuildRequires:	meson >= 0.63.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.16
-BuildRequires:	rest1-devel >= 0.9.0
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
@@ -62,6 +62,7 @@ Group:		Libraries
 Requires:	glib2 >= 1:2.67.4
 Requires:	gtk4 >= 4.15.2
 Requires:	libadwaita >= 1.6
+Requires:	librest >= 0.9.0
 Requires:	libsecret >= 0.5
 Requires:	libsoup3 >= 3.0
 Conflicts:	gnome-online-accounts < 3.8.2-1.1
