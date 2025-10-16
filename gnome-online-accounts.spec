@@ -6,12 +6,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.54.6
+Version:	3.54.7
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.54/%{name}-%{version}.tar.xz
-# Source0-md5:	5e677f0e45cbcf62f342cee53afbece4
+# Source0-md5:	3d328d05c67f3a9e74e31dfaf927fc0a
 Patch0:		no-gnome-post-install.patch
 URL:		https://gnome.pages.gitlab.gnome.org/gnome-online-accounts/
 BuildRequires:	dbus-devel
@@ -173,15 +173,15 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgoa-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgoa-1.0.so.0
+%ghost %{_libdir}/libgoa-1.0.so.0
 %attr(755,root,root) %{_libdir}/libgoa-backend-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgoa-backend-1.0.so.2
+%ghost %{_libdir}/libgoa-backend-1.0.so.2
 %{_libdir}/girepository-1.0/Goa-1.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgoa-1.0.so
-%attr(755,root,root) %{_libdir}/libgoa-backend-1.0.so
+%{_libdir}/libgoa-1.0.so
+%{_libdir}/libgoa-backend-1.0.so
 %dir %{_libdir}/goa-1.0
 %{_libdir}/goa-1.0/include
 %{_includedir}/goa-1.0
