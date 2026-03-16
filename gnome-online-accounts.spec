@@ -6,19 +6,19 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.56.4
+Version:	3.58.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.56/%{name}-%{version}.tar.xz
-# Source0-md5:	c6432bca0ecb63b94ac4652f8e6f8998
+Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.58/%{name}-%{version}.tar.xz
+# Source0-md5:	5027e0ed8137973cf092dbbeb2e72d4b
 Patch0:		no-gnome-post-install.patch
 URL:		https://gnome.pages.gitlab.gnome.org/gnome-online-accounts/
 BuildRequires:	dbus-devel
 BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	gi-docgen
-BuildRequires:	glib2-devel >= 1:2.67.4
+BuildRequires:	glib2-devel >= 1:2.84.0
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk4-devel >= 4.15.2
 BuildRequires:	json-glib-devel
@@ -59,7 +59,7 @@ sieciowych.
 Summary:	gnome-online-accounts libraries
 Summary(pl.UTF-8):	Biblioteki gnome-online-accounts
 Group:		Libraries
-Requires:	glib2 >= 1:2.67.4
+Requires:	glib2 >= 1:2.84.0
 Requires:	gtk4 >= 4.15.2
 Requires:	libadwaita >= 1.6
 Requires:	librest >= 0.9.0
@@ -78,7 +78,7 @@ Summary:	Development files for gnome-online-accounts libraries
 Summary(pl.UTF-8):	Pliki programistyczne bibliotek gnome-online-accounts
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.67.4
+Requires:	glib2-devel >= 1:2.84.0
 Requires:	gtk4-devel >= 4.15.2
 Requires:	libadwaita-devel >= 1.6
 
@@ -165,8 +165,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/goa-1.0
 %{_datadir}/dbus-1/services/org.gnome.OnlineAccounts.service
 %{_desktopdir}/org.gnome.OnlineAccounts.OAuth2.desktop
+%{_desktopdir}/org.gnome.goa-daemon.desktop
 %{_iconsdir}/hicolor/scalable/apps/goa-account*.svg
 %{_iconsdir}/hicolor/symbolic/apps/goa-account*-symbolic.svg
+%{_iconsdir}/hicolor/symbolic/apps/org.gnome.goa-daemon-symbolic.svg
 %{_mandir}/man8/goa-daemon.8*
 
 %files libs
