@@ -6,12 +6,12 @@
 Summary:	Provide online accounts information
 Summary(pl.UTF-8):	Dostarczanie informacji o kontach w serwisach sieciowych
 Name:		gnome-online-accounts
-Version:	3.58.0
+Version:	3.58.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/gnome-online-accounts/3.58/%{name}-%{version}.tar.xz
-# Source0-md5:	5027e0ed8137973cf092dbbeb2e72d4b
+# Source0-md5:	9942aa191d657f7c39d3b5ec28b74f61
 Patch0:		no-gnome-post-install.patch
 URL:		https://gnome.pages.gitlab.gnome.org/gnome-online-accounts/
 BuildRequires:	dbus-devel
@@ -173,9 +173,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgoa-1.0.so.*.*.*
+%{_libdir}/libgoa-1.0.so.*.*.*
 %ghost %{_libdir}/libgoa-1.0.so.0
-%attr(755,root,root) %{_libdir}/libgoa-backend-1.0.so.*.*.*
+%{_libdir}/libgoa-backend-1.0.so.*.*.*
 %ghost %{_libdir}/libgoa-backend-1.0.so.2
 %{_libdir}/girepository-1.0/Goa-1.0.typelib
 
